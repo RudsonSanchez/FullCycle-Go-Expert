@@ -17,10 +17,14 @@ type UsdBrl struct {
 	Low        string
 	VarBid     string
 	PctChange  string
-	Bid        string
+	Bid        string `json:"Bid"`
 	Ask        string
 	Timestamp  string
 	CreateDate string `json:"create_date"`
+}
+
+type UsdBrlResponse struct {
+	Bid string
 }
 
 type CotacaoDolar struct {
@@ -58,6 +62,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	response := UsdBrlResponse{
+		Bid: cotacao.UsdBrl.Bid,
+	}
 	//salvar no banco de dados sqlite.
-	json.NewEncoder(w).Encode(cotacao.UsdBrl.Bid)
+	json.NewEncoder(w).Encode(response)
 }
