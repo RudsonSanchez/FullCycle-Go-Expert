@@ -1,8 +1,8 @@
 package main
 
 import (
+	"fullcycle/server/cotacao"
 	"net/http"
-	"server/cotacao"
 )
 
 func main() {
